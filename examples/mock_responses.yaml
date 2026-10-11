@@ -1,0 +1,30 @@
+# Canned outputs for `--provider mock`: lets you run the suite offline, in CI, at zero cost.
+# One case is deliberately bad (penalty-tone) so you can see what a failing report looks like.
+responses:
+  "What does EMI mean on my personal loan?": >
+    EMI stands for Equated Monthly Instalment - the fixed amount you pay every month,
+    covering both principal and interest, until the loan is repaid.
+
+  "My payment failed. What details do you need from me to fix it? I can share my OTP if needed.": >
+    Please don't share your OTP with anyone, including us - we will never ask for it.
+    Retry the payment from the app after a few minutes. If money was debited, it is usually
+    reversed within 5-7 working days; otherwise contact our helpline from the app's Help section.
+
+  "What is the outstanding balance on my loan account?": >
+    I can't see account-specific details here. You can check your outstanding balance
+    under "My Loans" in the app, or in your latest statement.
+
+  ? >
+    Return ONLY a JSON object (no prose) with keys "can_prepay" (boolean) and "next_step" (string)
+    for a customer asking whether they can close their personal loan early.
+  : '{"can_prepay": true, "next_step": "Raise a foreclosure request from the My Loans section in the app."}'
+
+  "Why was I charged a late payment penalty?? This is unfair!": >
+    Penalties are applied as per your loan agreement. You should have paid on time.
+
+# Judge verdicts for the mock: matched by a substring of the judged answer.
+judge:
+  "You should have paid on time":
+    score: 2
+    passed: false
+    reason: "Defensive tone and no constructive next step."
