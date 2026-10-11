@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - name: Unit tests
+        run: pytest -q
+      - name: Example eval suite (offline mock provider)
+        # The example includes one deliberately failing case, so gate at 80%.
+        run: llmeval run examples/loan_support_suite.yaml --provider mock --mock-file examples/mock_responses.yaml --min-pass-rate 0.8
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report-${{ matrix.python-version }}
+          path: reports/
