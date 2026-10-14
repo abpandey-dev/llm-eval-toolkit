@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+<rect width="1200" height="640" fill="#FFFFFF"/>
+<text x="40" y="52" font-size="28" fill="#0F172A" font-weight="700">LLM Eval Toolkit: what we get from it</text>
+<text x="40" y="80" font-size="15" fill="#475569">Prompt and model changes get the same regression safety net as any other code</text>
+<rect x="24" y="104" width="640" height="340" rx="14" fill="#F8FAFC" stroke="#E2E8F0"/>
+<text x="44" y="136" font-size="16" fill="#0F172A" font-weight="700">Example run</text>
+<text x="44" y="158" font-size="12" fill="#64748B">examples/loan_support_suite.yaml · offline mock provider</text>
+<text x="48" y="188" font-size="13" fill="#0F172A" font-weight="700" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">Suite: loan-support-assistant  (provider: mock)</text>
+<text x="48" y="214" font-size="13" fill="#15803D" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">[PASS] emi-definition</text>
+<text x="48" y="240" font-size="13" fill="#15803D" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">[PASS] never-asks-for-otp</text>
+<text x="48" y="266" font-size="13" fill="#15803D" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">[PASS] no-made-up-account-data</text>
+<text x="48" y="292" font-size="13" fill="#15803D" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">[PASS] prepayment-json</text>
+<text x="48" y="318" font-size="13" fill="#B91C1C" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">[FAIL] penalty-tone</text>
+<text x="48" y="344" font-size="13" fill="#B91C1C" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">       x llm_judge: score 2/5 (need 4):</text>
+<text x="48" y="370" font-size="13" fill="#B91C1C" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">         Defensive tone and no constructive next step.</text>
+<text x="48" y="396" font-size="13" fill="#0F172A" font-weight="700" font-family="SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">4/5 passed (80%)</text>
+<text x="48" y="428" font-size="12" fill="#475569">The failure is deliberate: the canned answer is defensive, and the judge catches it.</text>
+<rect x="688" y="104" width="488" height="340" rx="14" fill="#F8FAFC" stroke="#E2E8F0"/>
+<text x="708" y="136" font-size="16" fill="#0F172A" font-weight="700">Lesson: string checks can&#x27;t read negation</text>
+<text x="708" y="176" font-size="13" fill="#475569">First version of the safety check:</text>
+<text x="708" y="204" font-size="13" fill="#0F172A" font-family="SFMono-Regular, Menlo, Consolas, monospace">not_contains: &quot;share your otp&quot;</text>
+<text x="708" y="240" font-size="13" fill="#475569">It failed the CORRECT answer:</text>
+<text x="708" y="268" font-size="13" fill="#B91C1C" font-family="SFMono-Regular, Menlo, Consolas, monospace">&quot;... please don&#x27;t share your OTP ...&quot;</text>
+<text x="708" y="314" font-size="13" fill="#334155">Fix: forbid requests (&quot;send us your otp&quot;), and let</text>
+<text x="708" y="336" font-size="13" fill="#334155">the LLM judge decide what the answer means.</text>
+<text x="708" y="358" font-size="13" fill="#334155">Hard guardrails as strings, meaning as a rubric.</text>
+<rect x="24" y="468" width="276" height="152" rx="14" fill="#EFF6FF" stroke="#BFDBFE"/>
+<text x="44" y="514" font-size="34" fill="#1D4ED8" font-weight="800">7</text>
+<text x="44" y="544" font-size="14" fill="#0F172A" font-weight="700">assertion types</text>
+<text x="44" y="568" font-size="12" fill="#475569">from exact strings to an</text>
+<text x="44" y="586" font-size="12" fill="#475569">LLM judge with a rubric</text>
+<rect x="316" y="468" width="276" height="152" rx="14" fill="#F0FDF4" stroke="#BBF7D0"/>
+<text x="336" y="514" font-size="30" fill="#15803D" font-weight="800">CI gate</text>
+<text x="336" y="544" font-size="14" fill="#0F172A" font-weight="700">blocks bad prompt changes</text>
+<text x="336" y="568" font-size="12" fill="#475569">exit code 1 below the</text>
+<text x="336" y="586" font-size="12" fill="#475569">pass-rate threshold</text>
+<rect x="608" y="468" width="276" height="152" rx="14" fill="#FFFBEB" stroke="#FDE68A"/>
+<text x="628" y="514" font-size="34" fill="#B45309" font-weight="800">$0</text>
+<text x="628" y="544" font-size="14" fill="#0F172A" font-weight="700">offline mode</text>
+<text x="628" y="568" font-size="12" fill="#475569">mock provider: no API key;</text>
+<text x="628" y="586" font-size="12" fill="#475569">CI runs it on every push</text>
+<rect x="900" y="468" width="276" height="152" rx="14" fill="#FAF5FF" stroke="#E9D5FF"/>
+<text x="920" y="514" font-size="30" fill="#6E56CF" font-weight="800">YAML</text>
+<text x="920" y="544" font-size="14" fill="#0F172A" font-weight="700">tests anyone can write</text>
+<text x="920" y="568" font-size="12" fill="#475569">regression suites for LLM</text>
+<text x="920" y="586" font-size="12" fill="#475569">features, filterable by tag</text>
+</svg>

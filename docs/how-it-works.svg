@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+<rect width="1200" height="620" fill="#FFFFFF"/>
+<text x="40" y="52" font-size="28" fill="#0F172A" font-weight="700">LLM Eval Toolkit: how it works</text>
+<text x="40" y="80" font-size="15" fill="#475569">Regression tests for LLM features: YAML suites, assertions plus an LLM judge, CI gates</text>
+<rect x="24" y="104" width="1152" height="280" rx="14" fill="#EFF6FF" stroke="#BFDBFE"/>
+<text x="44" y="132" font-size="13" fill="#1D4ED8" font-weight="700" letter-spacing="1">RUN A SUITE</text>
+<rect x="44" y="144" width="250" height="200" rx="10" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+<text x="62" y="174" font-size="15" fill="#0F172A" font-weight="700">YAML test suite</text>
+<text x="62" y="200" font-size="12" fill="#334155">cases: prompt + tags</text>
+<text x="62" y="220" font-size="12" fill="#334155">assertions:</text>
+<text x="62" y="240" font-size="12" fill="#334155">  - type: not_contains</text>
+<text x="62" y="260" font-size="12" fill="#334155">  - type: llm_judge</text>
+<text x="62" y="280" font-size="12" fill="#334155">    threshold: 4</text>
+<rect x="334" y="144" width="230" height="200" rx="10" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+<text x="352" y="174" font-size="15" fill="#1D4ED8" font-weight="700">Runner</text>
+<text x="352" y="200" font-size="12" fill="#334155">loads + validates YAML</text>
+<text x="352" y="220" font-size="12" fill="#334155">filters by --tags</text>
+<text x="352" y="240" font-size="12" fill="#334155">runs every case</text>
+<text x="352" y="260" font-size="12" fill="#334155">times every call</text>
+<rect x="604" y="144" width="260" height="200" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+<text x="622" y="174" font-size="15" fill="#6D28D9" font-weight="700">Model under test</text>
+<text x="848" y="174" font-size="11" fill="#D97757" font-weight="700" text-anchor="end">CLAUDE</text>
+<text x="622" y="200" font-size="12" fill="#334155">Claude via the official SDK</text>
+<text x="622" y="220" font-size="12" fill="#334155">refusal fallbacks on</text>
+<text x="622" y="240" font-size="12" fill="#334155"></text>
+<text x="622" y="260" font-size="12" fill="#334155">or the Mock provider:</text>
+<text x="622" y="280" font-size="12" fill="#334155">offline, no key, $0</text>
+<rect x="904" y="144" width="252" height="200" rx="10" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+<text x="922" y="174" font-size="15" fill="#1D4ED8" font-weight="700">Grade each answer</text>
+<text x="922" y="200" font-size="12" fill="#334155">contains · not_contains</text>
+<text x="922" y="220" font-size="12" fill="#334155">json_valid · max_length</text>
+<text x="922" y="240" font-size="12" fill="#334155">max_latency_ms · not_refused</text>
+<text x="922" y="260" font-size="12" fill="#334155"></text>
+<text x="922" y="280" font-size="12" fill="#334155">LLM-as-judge: rubric</text>
+<text x="922" y="300" font-size="12" fill="#334155">+ minimum score</text>
+<line x1="294" y1="244" x2="330" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="564" y1="244" x2="600" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="864" y1="244" x2="900" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="24" y="404" width="1152" height="196" rx="14" fill="#F0FDF4" stroke="#BBF7D0"/>
+<text x="44" y="432" font-size="13" fill="#15803D" font-weight="700" letter-spacing="1">REPORT AND GATE</text>
+<rect x="44" y="444" width="340" height="130" rx="10" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+<text x="214.0" y="476" font-size="15" fill="#0F172A" font-weight="700" text-anchor="middle">Console</text>
+<text x="214.0" y="504" font-size="12" fill="#475569" text-anchor="middle">PASS / FAIL per case</text>
+<text x="214.0" y="524" font-size="12" fill="#475569" text-anchor="middle">with the reason it failed</text>
+<rect x="420" y="444" width="340" height="130" rx="10" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+<text x="590.0" y="476" font-size="15" fill="#0F172A" font-weight="700" text-anchor="middle">Report files</text>
+<text x="590.0" y="504" font-size="12" fill="#475569" text-anchor="middle">results.json + report.md</text>
+<text x="590.0" y="524" font-size="12" fill="#475569" text-anchor="middle">uploaded as a CI artifact</text>
+<rect x="796" y="444" width="360" height="130" rx="10" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+<text x="814" y="474" font-size="15" fill="#15803D" font-weight="700">CI gate</text>
+<text x="814" y="500" font-size="12" fill="#334155">exit code 1 below --min-pass-rate</text>
+<text x="814" y="520" font-size="12" fill="#334155">runs on every push (GitHub Actions)</text>
+<line x1="1030" y1="344" x2="1030" y2="440" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
