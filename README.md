@@ -10,6 +10,14 @@
 
 ---
 
+## How it works
+
+![How LLM Eval Toolkit works](docs/how-it-works.svg)
+
+## What we get from it
+
+![What we get from LLM Eval Toolkit](docs/what-we-get.svg)
+
 ## Why
 
 Most LLM demos are checked by eye. That doesn't scale and it doesn't catch regressions when you change a prompt or a model. This toolkit treats every prompt as a **test case** with **assertions**:
@@ -98,6 +106,7 @@ llmeval run SUITE.yaml
 ## Project layout
 
 ```text
+docs/             # how-it-works and what-we-get diagrams (SVG)
 src/llm_eval/
   models.py       # Suite / TestCase / result models (pydantic)
   providers.py    # AnthropicProvider (Claude via the official SDK) + MockProvider
